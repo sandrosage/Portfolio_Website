@@ -1,54 +1,37 @@
 import { motion } from "framer-motion";
 import { skills } from "@/data/portfolio";
+import SectionHeader from "./SectionHeader";
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-white mb-4">Skills</h2>
-          <p className="text-[var(--text-secondary)] max-w-xl mx-auto">
-            Technologies and tools I work with across the AI/ML and full-stack stack.
-          </p>
-        </motion.div>
+    <section id="skills" className="py-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        <SectionHeader
+          eyebrow="Toolbox"
+          title="Skills"
+          subtitle="Technologies and tools I work with across the AI/ML stack."
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="border-t" style={{ borderColor: "var(--line)" }}>
           {skills.map((group, gi) => (
             <motion.div
               key={group.category}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: gi * 0.1 }}
+              transition={{ duration: 0.35, delay: gi * 0.04 }}
               viewport={{ once: true }}
-              className="rounded-xl p-6 border"
-              style={{
-                background: "var(--bg-card)",
-                borderColor: "var(--border)",
-              }}
+              className="grid grid-cols-1 sm:grid-cols-[190px_1fr] gap-3 sm:gap-8 py-6 border-b"
+              style={{ borderColor: "var(--line)" }}
             >
               <h3
-                className="text-sm font-bold uppercase tracking-widest mb-4"
-                style={{ color: "var(--accent)" }}
+                className="font-mono text-xs uppercase tracking-[0.18em] pt-1.5"
+                style={{ color: "var(--muted)" }}
               >
                 {group.category}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 py-1 rounded-full text-xs font-medium border"
-                    style={{
-                      borderColor: "var(--border)",
-                      color: "var(--text-primary)",
-                      background: "var(--bg-secondary)",
-                    }}
-                  >
+                  <span key={item} className="tag">
                     {item}
                   </span>
                 ))}

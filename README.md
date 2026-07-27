@@ -1,40 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Portfolio — Sandro Sage
 
-## Getting Started
+Personal website of an AI & Machine Learning engineer: projects, experience, CV, and a markdown-based blog. Built with Next.js (Pages Router), Tailwind CSS v4, and Framer Motion.
 
-First, run the development server:
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build (also validates all pages/posts)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content editing
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+All content lives in two places — no component code needs to change:
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+| What | Where |
+| --- | --- |
+| Bio, roles, links, email | `data/portfolio.ts` → `personalInfo` |
+| Skills | `data/portfolio.ts` → `skills` |
+| Experience & education | `data/portfolio.ts` → `experience`, `education` |
+| Projects | `data/portfolio.ts` → `projects` |
+| Blog posts | `posts/*.md` |
+| CV | S3 URL in `data/portfolio.ts` → `personalInfo.resumeUrl` |
+| Profile photo | `public/profile.jpg` |
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### Adding a blog post
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a new markdown file in `posts/` — the filename becomes the URL slug (`posts/my-post.md` → `/blog/my-post`):
 
-## Learn More
+```markdown
+---
+title: "My Post Title"
+date: "2026-08-01"
+excerpt: "One or two sentences shown in the post list and on the homepage."
+tags: ["AI Agents", "PyTorch"]
+---
 
-To learn more about Next.js, take a look at the following resources:
+Your content in **markdown** — headings, lists, links, and code blocks all work.
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+Posts are sorted by `date` (newest first). The three most recent appear on the homepage; all posts appear on `/blog`. Pages are statically generated, so after adding a post, commit and redeploy:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+git add posts/my-post.md
+git commit -m "Add post: My Post Title"
+git push   # Vercel redeploys automatically
+```
 
-## Deploy on Vercel
+### Adding a project
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Append an entry to the `projects` array in `data/portfolio.ts`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+```ts
+{
+  title: "Project Name",
+  description: "What it is, what you built, and what the result was.",
+  tags: ["PyTorch", "Python"],
+  github: "https://github.com/sandrosage/repo",
+  demo: "", // optional live-demo URL, shown only if non-empty
+},
+```
+
+Commit and push to redeploy, same as above.
+
+### Updating the CV
+
+The CV is hosted on S3. Upload the new PDF to the bucket, then update `personalInfo.resumeUrl` in `data/portfolio.ts` if the object key changed. It is linked from the navbar ("CV") and the hero ("View CV"). (`public/resume.pdf` is no longer referenced and can be kept as a backup or deleted.)
+
+## Deploy
+
+The site is a standard Next.js app — deploy on [Vercel](https://vercel.com/new): import the repository once, and every push to `main` triggers a redeploy.
+
+## Notes
+
+- The contact form posts to `pages/api/contact.ts`, which currently only logs submissions. Wire it to nodemailer + SMTP env vars to receive real emails.

@@ -2,70 +2,67 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FaArrowRight } from "react-icons/fa";
 import { PostMeta } from "@/lib/posts";
+import SectionHeader from "./SectionHeader";
 
-type Props = {
-  posts: PostMeta[];
-};
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
 
-export default function BlogPreview({ posts }: Props) {
-  if (posts.length === 0) return null;
-
+export default function BlogPreview({ posts }: { posts: PostMeta[] }) {
   return (
-    <section id="blog" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-white mb-4">Blog</h2>
-          <p className="text-[var(--text-secondary)] max-w-xl mx-auto">
-            Thoughts on AI agents, machine learning, and building things end to end.
-          </p>
-        </motion.div>
+    <section id="blog" className="py-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        <SectionHeader
+          eyebrow="Writing"
+          title="From the blog"
+          subtitle="Notes on AI agents, machine learning, and building things end to end."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="border-t" style={{ borderColor: "var(--line)" }}>
           {posts.map((post, i) => (
             <motion.div
               key={post.slug}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.35, delay: i * 0.05 }}
               viewport={{ once: true }}
-              whileHover={{ y: -4 }}
+              className="border-b"
+              style={{ borderColor: "var(--line)" }}
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className="block rounded-xl p-6 border h-full transition-all duration-200 hover:border-[var(--accent)]"
-                style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}
+                className="group grid grid-cols-1 sm:grid-cols-[190px_1fr] gap-2 sm:gap-8 py-7"
               >
-                <p className="text-xs mb-2" style={{ color: "var(--text-secondary)" }}>
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-                <h3 className="text-lg font-bold text-white mb-2">{post.title}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-                  {post.excerpt}
-                </p>
+                <span className="font-mono text-xs pt-1" style={{ color: "var(--muted)" }}>
+                  {formatDate(post.date)}
+                </span>
+                <div>
+                  <h3
+                    className="font-serif text-xl font-medium transition-colors group-hover:text-[var(--amber-light)]"
+                    style={{ color: "var(--text)" }}
+                  >
+                    {post.title}
+                  </h3>
+                  <p className="text-sm mt-2 leading-relaxed max-w-2xl" style={{ color: "var(--sub)" }}>
+                    {post.excerpt}
+                  </p>
+                </div>
               </Link>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium transition-colors hover:text-white"
-            style={{ color: "var(--accent)" }}
-          >
-            View all posts <FaArrowRight size={12} />
-          </Link>
-        </div>
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-2 font-mono text-sm mt-8 transition-colors hover:text-[var(--amber-light)]"
+          style={{ color: "var(--amber)" }}
+        >
+          All posts <FaArrowRight size={11} />
+        </Link>
       </div>
     </section>
   );

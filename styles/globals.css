@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #0d1117;
-  --bg-secondary: #161b22;
-  --bg-card: #1c2333;
-  --accent: #854CE6;
-  --accent-light: #a78bfa;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --border: #30363d;
+  --bg: #0d1220;
+  --glass: rgba(255, 255, 255, 0.035);
+  --glass-strong: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.2);
+  --text: #ecf0f7;
+  --sub: #9aa6bd;
+  --muted: #64718a;
+  --amber: #e8a13c;
+  --amber-light: #f0c27e;
 }
 
 html {
@@ -16,20 +18,51 @@ html {
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.font-mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+/* Unified tag chip for skills, project tags, and post tags */
+.tag {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  line-height: 1;
+  color: var(--amber-light);
+  background: rgba(232, 161, 60, 0.07);
+  border: 1px solid rgba(232, 161, 60, 0.3);
+  border-radius: 4px;
+  padding: 0.35rem 0.55rem;
+  white-space: nowrap;
+}
+
+/* Mono eyebrow label above section titles */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #2a3247; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #3a4560; }
 
 /* Selection */
-::selection { background: var(--accent); color: white; }
+::selection { background: rgba(232, 161, 60, 0.35); color: var(--text); }
 
-/* Typewriter cursor */
-.Typewriter__cursor {
-  color: var(--accent) !important;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }

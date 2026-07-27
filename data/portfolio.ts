@@ -9,7 +9,8 @@ export const personalInfo = {
   email: "sandro-sage@gmx.de",
   github: "https://github.com/sandrosage",
   linkedin: "https://www.linkedin.com/in/sandro-sage-b40899225/",
-  resumeUrl: "/resume.pdf",
+  resumeUrl:
+    "https://sandro-portfolio-website-cv-207224907952-eu-central-1-an.s3.eu-central-1.amazonaws.com/Sandro_Sage_Resume_08_07_26.pdf",
   profileImage: "/profile.jpg",
 };
 
@@ -52,15 +53,6 @@ export const experience = [
       "Contributed to ML pipelines with a focus on computer vision (SyNaKI, GAIA projects). Implemented a distributed AI tool using evolutionary algorithms, optimized vision models for embedded deployment, and supported AI research funding applications.",
   },
   {
-    title: "M.Sc. Artificial Intelligence",
-    company: "Friedrich-Alexander-University (FAU)",
-    companyUrl: "https://www.fau.de",
-    date: "April 2023 – March 2026",
-    location: "Erlangen, Bavaria",
-    description:
-      "Grade 1.3 — Focus on Advanced Deep Learning, Pattern Recognition, Statistical Learning, and Diffusion & Attention Models. Master thesis: \"K-space Latent Diffusion for Accelerated MRI\" (IdeaLab) — Grade 1.3.",
-  },
-  {
     title: "Research Assistant",
     company: "DIT Lab for Digitalization of AI in Electrical Engineering",
     companyUrl: "https://www.th-deg.de",
@@ -79,15 +71,6 @@ export const experience = [
       "Independently designed and deployed scalable cloud services and data engineering pipelines using AWS CDK. Contributed to predictive maintenance projects and gained hands-on SCRUM and CI/CD experience.",
   },
   {
-    title: "B.Eng. Applied Computer Science",
-    company: "Deggendorf Institute of Technology (DIT)",
-    companyUrl: "https://www.th-deg.de",
-    date: "October 2019 – March 2023",
-    location: "Deggendorf, Bavaria",
-    description:
-      "Grade 1.4 — Focus on Embedded Systems. Bachelor thesis: \"Generation, Optimization, and Evaluation of ML/DL Models for Tiny Machine Learning (TinyML)\" — Grade 1.3.",
-  },
-  {
     title: "Research Assistant – Embedded Systems",
     company: "DIT Project Lab for Hardware-Related Digitization",
     companyUrl: "https://www.th-deg.de",
@@ -98,7 +81,36 @@ export const experience = [
   },
 ];
 
+export const education = [
+  {
+    title: "M.Sc. Artificial Intelligence",
+    company: "Friedrich-Alexander-University (FAU)",
+    companyUrl: "https://www.fau.de",
+    date: "April 2023 – March 2026",
+    location: "Erlangen, Bavaria",
+    description:
+      "Grade 1.3 — Focus on Advanced Deep Learning, Pattern Recognition, Statistical Learning, and Diffusion & Attention Models. Master thesis: \"K-space Latent Diffusion for Accelerated MRI\" (IdeaLab) — Grade 1.3.",
+  },
+  {
+    title: "B.Eng. Applied Computer Science",
+    company: "Deggendorf Institute of Technology (DIT)",
+    companyUrl: "https://www.th-deg.de",
+    date: "October 2019 – March 2023",
+    location: "Deggendorf, Bavaria",
+    description:
+      "Grade 1.4 — Focus on Embedded Systems. Bachelor thesis: \"Generation, Optimization, and Evaluation of ML/DL Models for Tiny Machine Learning (TinyML)\" — Grade 1.3.",
+  },
+];
+
 export const projects = [
+  {
+    title: "K-space Latent Diffusion for Accelerated MRI",
+    description:
+      "Master thesis (IdeaLab, FAU) — Grade 1.3. Developed a latent diffusion model operating directly in k-space to accelerate MRI reconstruction, reducing scan time while preserving image fidelity through learned generative priors.",
+    tags: ["PyTorch", "Diffusion Models", "MRI Reconstruction", "Deep Learning", "Python"],
+    github: "https://github.com/sandrosage",
+    demo: "",
+  },
   {
     title: "SMMetrDE – Segmentation-guided Monocular Metric Depth Estimation",
     description:

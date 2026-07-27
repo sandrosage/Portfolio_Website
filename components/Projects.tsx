@@ -1,79 +1,76 @@
 import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { projects } from "@/data/portfolio";
+import SectionHeader from "./SectionHeader";
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-white mb-4">Projects</h2>
-          <p className="text-[var(--text-secondary)] max-w-xl mx-auto">
-            A selection of things I've built.
-          </p>
-        </motion.div>
+    <section id="projects" className="py-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        <SectionHeader
+          eyebrow="Selected work"
+          title="Projects"
+          subtitle="Research and engineering work I'm proud of."
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {projects.map((project, i) => (
-            <motion.div
+            <motion.article
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.35, delay: (i % 2) * 0.06 }}
               viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              className="rounded-xl p-6 border flex flex-col h-full transition-all duration-200 hover:border-[var(--accent)]"
-              style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}
+              className="rounded-xl p-7 border flex flex-col h-full transition-colors duration-200 hover:border-[rgba(232,161,60,0.4)]"
+              style={{ background: "var(--glass)", borderColor: "var(--line)" }}
             >
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 rounded text-xs font-medium"
-                      style={{ background: "#854CE620", color: "var(--accent)" }}
+              <div className="flex items-start justify-between mb-3">
+                <h3
+                  className="font-serif text-xl font-medium leading-snug pr-4"
+                  style={{ color: "var(--text)" }}
+                >
+                  {project.title}
+                </h3>
+                <div className="flex gap-3 flex-shrink-0 pt-1.5">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} on GitHub`}
+                      className="transition-colors hover:text-[var(--amber)]"
+                      style={{ color: "var(--muted)" }}
                     >
-                      {tag}
-                    </span>
-                  ))}
+                      <FaGithub size={18} />
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${project.title} live demo`}
+                      className="transition-colors hover:text-[var(--amber)]"
+                      style={{ color: "var(--muted)" }}
+                    >
+                      <FaExternalLinkAlt size={15} />
+                    </a>
+                  )}
                 </div>
               </div>
 
-              <div className="flex gap-4 mt-2">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm hover:text-white transition-colors"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    <FaGithub size={15} /> Code
-                  </a>
-                )}
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-sm hover:text-white transition-colors"
-                    style={{ color: "var(--text-secondary)" }}
-                  >
-                    <FaExternalLinkAlt size={13} /> Live Demo
-                  </a>
-                )}
+              <p className="text-sm leading-relaxed flex-1 mb-5" style={{ color: "var(--sub)" }}>
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map((tag) => (
+                  <span key={tag} className="tag">
+                    {tag}
+                  </span>
+                ))}
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

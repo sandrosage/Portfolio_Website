@@ -10,6 +10,14 @@ type Props = {
   posts: PostMeta[];
 };
 
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
 export default function Blog({ posts }: Props) {
   return (
     <>
@@ -22,51 +30,52 @@ export default function Blog({ posts }: Props) {
       </Head>
 
       <Navbar />
-      <main className="pt-32 pb-24 px-6 min-h-screen">
-        <div className="max-w-4xl mx-auto">
+      <main className="pt-36 pb-24 px-6 min-h-screen">
+        <div className="max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
+            transition={{ duration: 0.4 }}
+            className="mb-14"
           >
-            <h1 className="text-4xl font-bold text-white mb-4">Blog</h1>
-            <p className="text-[var(--text-secondary)] max-w-xl">
-              Thoughts on AI agents, machine learning, and building things end to end.
+            <p className="eyebrow mb-3">Writing</p>
+            <h1
+              className="font-serif text-4xl md:text-5xl font-medium tracking-tight mb-4"
+              style={{ color: "var(--text)" }}
+            >
+              Blog
+            </h1>
+            <p style={{ color: "var(--sub)" }}>
+              Notes on AI agents, machine learning, and building things end to end.
             </p>
           </motion.div>
 
-          <div className="flex flex-col gap-6">
+          <div className="border-t" style={{ borderColor: "var(--line)" }}>
             {posts.map((post, i) => (
               <motion.div
                 key={post.slug}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
+                transition={{ duration: 0.35, delay: 0.05 + i * 0.05 }}
+                className="border-b"
+                style={{ borderColor: "var(--line)" }}
               >
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="block rounded-xl p-6 border transition-all duration-200 hover:border-[var(--accent)]"
-                  style={{ background: "var(--bg-card)", borderColor: "var(--border)" }}
-                >
-                  <p className="text-xs mb-2" style={{ color: "var(--text-secondary)" }}>
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
+                <Link href={`/blog/${post.slug}`} className="group block py-8">
+                  <p className="font-mono text-xs mb-2" style={{ color: "var(--muted)" }}>
+                    {formatDate(post.date)}
                   </p>
-                  <h2 className="text-xl font-bold text-white mb-2">{post.title}</h2>
-                  <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text-secondary)" }}>
+                  <h2
+                    className="font-serif text-2xl font-medium transition-colors group-hover:text-[var(--amber-light)] mb-2"
+                    style={{ color: "var(--text)" }}
+                  >
+                    {post.title}
+                  </h2>
+                  <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--sub)" }}>
                     {post.excerpt}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 rounded text-xs font-medium"
-                        style={{ background: "#854CE620", color: "var(--accent)" }}
-                      >
+                      <span key={tag} className="tag">
                         {tag}
                       </span>
                     ))}
@@ -83,6 +92,9 @@ export default function Blog({ posts }: Props) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = getSortedPostsData();
-  return { props: { posts } };
+  return {
+    props: {
+      posts: getSortedPostsData(),
+    },
+  };
 };
