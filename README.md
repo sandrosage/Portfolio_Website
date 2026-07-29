@@ -10,6 +10,9 @@ npm run dev      # http://localhost:3000
 npm run build    # production build (also validates all pages/posts) / npx wrangler pages deploy .vercel/output/static --project-name portfolio
 ```
 
+TODO see production in cloudfare:
+
+
 ## Content editing
 
 All content lives in two places — no component code needs to change:
