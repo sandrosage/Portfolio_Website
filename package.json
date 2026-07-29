@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/generate-posts.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/generate-posts.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "build:cf": "node scripts/generate-posts.mjs && npx @opennextjs/cloudflare build"
   },
   "dependencies": {
     "@vercel/analytics": "^1.0.0",

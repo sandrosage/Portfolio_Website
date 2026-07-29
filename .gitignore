@@ -1,9 +1,11 @@
 node_modules/
 .next/
 out/
+.open-next/
 .env
 .env.local
 .env*.local
 npm-debug.log*
 .DS_Store
 .claude
+lib/posts-data.json
