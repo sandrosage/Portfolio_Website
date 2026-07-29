@@ -1,4 +1,4 @@
-# Portfolio — Sandro Sage
+# Portfolio
 
 Personal website of an AI & Machine Learning engineer: projects, experience, CV, and a markdown-based blog. Built with Next.js (Pages Router), Tailwind CSS v4, and Framer Motion.
 
