@@ -7,7 +7,7 @@ Personal website of an AI & Machine Learning engineer: projects, experience, CV,
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # production build (also validates all pages/posts) / npx wrangler pages deploy .vercel/output/static
+npm run build    # production build (also validates all pages/posts) / npx wrangler pages deploy .vercel/output/static --project-name portfolio
 ```
 
 ## Content editing
