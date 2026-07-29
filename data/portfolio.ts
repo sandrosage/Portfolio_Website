@@ -4,8 +4,8 @@
 
 export const personalInfo = {
   name: "Sandro Sage",
-  roles: ["AI Engineer", "Agent Developer", "Machine Learning Engineer"],
-  bio: "AI & ML Engineer building production-grade agentic systems at ARRK Engineering on a large-scale BMW project. Specializing in LLM orchestration, multi-agent architectures, and RAG pipelines — with a research background spanning computer vision, TinyML, and diffusion models.",
+  roles: ["AI Engineer", "Agentic AI Developer", "Generative AI Engineer", "Machine Learning Engineer"],
+  bio: "AI/ML engineer with 5+ years of Python-based development across generative AI, computer vision, NLP, and embedded ML. Currently building a production multi-agent GenAI system (LangChain, LangGraph, RAG, FastAPI) at ARRK Engineering for a large-scale BMW initiative — with a research background spanning diffusion models, computer vision, and TinyML. M.Sc. in Artificial Intelligence (FAU, grade 1.3).",
   email: "sandro-sage@gmx.de",
   github: "https://github.com/sandrosage",
   linkedin: "https://www.linkedin.com/in/sandro-sage-b40899225/",
@@ -16,20 +16,20 @@ export const personalInfo = {
 
 export const skills = [
   {
-    category: "Agent & LLM",
-    items: ["LangChain", "LangGraph", "LangFuse", "Multi-agent systems", "AgentOps", "RAG pipelines", "Weaviate", "OpenAI API", "Anthropic API"],
+    category: "Agent, LLM & NLP",
+    items: ["LangChain", "LangGraph", "LangFuse", "Multi-agent systems", "AgentOps/MLOps", "RAG pipelines", "Prompt & context engineering", "Weaviate (vector DB)"],
   },
   {
     category: "AI & Machine Learning",
-    items: ["PyTorch", "PyTorch Lightning", "TensorFlow", "Keras", "Hugging Face", "OpenCV"],
+    items: ["PyTorch", "PyTorch Lightning", "TensorFlow", "Keras", "Hugging Face", "scikit-learn", "OpenCV", "World Models", "Latent Space Modeling"],
   },
   {
     category: "Infrastructure & DevOps",
-    items: ["FastAPI", "Docker", "Docker Compose", "PostgreSQL", "AWS (CDK)", "Git", "CI/CD"],
+    items: ["FastAPI", "Docker", "Docker Compose", "Kubernetes", "Helm", "Celery", "GitHub Actions", "PostgreSQL", "AWS (CDK)", "CI/CD"],
   },
   {
     category: "Languages",
-    items: ["Python", "C", "C++", "SQL", "LaTeX"],
+    items: ["Python", "C", "C++", "SQL", "Git", "LaTeX"],
   },
 ];
 
@@ -41,7 +41,7 @@ export const experience = [
     date: "December 2025 – Present",
     location: "Munich, Germany",
     description:
-      "Leading AI engineer on a large-scale BMW project, designing end-to-end agentic AI systems with LangChain, LangGraph, and LangFuse. Building scalable FastAPI backends with Docker, Weaviate, and PostgreSQL; driving multi-agent architecture concepts and LLM integration across OpenAI, Anthropic, and other major APIs.",
+      "Design and develop a production multi-agent Generative AI system (orchestrator plus specialized subagents) serving 10+ active users on a large-scale BMW initiative, using LangChain, LangGraph, and LangFuse for orchestration, tracing, and evaluation. Built a RAG pipeline with Weaviate and PostgreSQL, scalable FastAPI backends containerized via Docker, and Kubernetes/Helm deployments with GitHub Actions CI/CD. Core contributor on a 5-person team, running stakeholder demos and serving as go-to resource for agent design and LLM integration — alongside exploratory research on world models for driving scenarios.",
   },
   {
     title: "Working Student – AI & Machine Learning",
@@ -50,7 +50,7 @@ export const experience = [
     date: "October 2023 – November 2025",
     location: "Tennenlohe, Bavaria",
     description:
-      "Contributed to ML pipelines with a focus on computer vision (SyNaKI, GAIA projects). Implemented a distributed AI tool using evolutionary algorithms, optimized vision models for embedded deployment, and supported AI research funding applications.",
+      "Built and optimized computer vision pipelines across two applied research projects (SyNaKI, GAIA) using TensorFlow/TFLite, model compression and quantization, and custom OpenCV algorithms — deploying models on embedded hardware. Implemented a distributed AI tool using evolutionary algorithms and supported AI research funding applications.",
   },
   {
     title: "Research Assistant",
@@ -59,7 +59,7 @@ export const experience = [
     date: "March 2022 – March 2023",
     location: "Deggendorf, Bavaria",
     description:
-      "Led data acquisition for sensor-based DC-DC converters to enable predictive maintenance. Performed time series analysis and deployed statistical models and neural networks on resource-constrained devices (TinyML). Conducted Bachelor's thesis at the lab.",
+      "Led sensor-based data acquisition on DC-DC converters for predictive maintenance. Engineered meta-statistical features over sliding time windows, applied classical ML models (scikit-learn, GridSearch-tuned) for anomaly detection, and deployed compressed CNNs on resource-constrained TinyML devices. Conducted Bachelor's thesis at the lab.",
   },
   {
     title: "Internship – IoT Edge Computing & Machine Learning (AWS)",
@@ -100,23 +100,32 @@ export const education = [
     description:
       "Grade 1.4 — Focus on Embedded Systems. Bachelor thesis: \"Generation, Optimization, and Evaluation of ML/DL Models for Tiny Machine Learning (TinyML)\" — Grade 1.3.",
   },
+  {
+    title: "Summer School – Deep Learning",
+    company: "University of Southern Denmark (SDU)",
+    companyUrl: "https://www.sdu.dk",
+    date: "August 2022",
+    location: "Odense, Denmark",
+    description:
+      "Completed a hands-on project classifying healthy vs. pneumonia-affected lungs using convolutional neural networks.",
+  },
 ];
 
 export const projects = [
   {
     title: "K-space Latent Diffusion for Accelerated MRI",
     description:
-      "Master thesis (IdeaLab, FAU) — Grade 1.3. Developed a latent diffusion model operating directly in k-space to accelerate MRI reconstruction, reducing scan time while preserving image fidelity through learned generative priors.",
+      "Master thesis (IdeaLab, FAU) — Grade 1.3. Proposed the kLD-MRI framework, applying latent diffusion models directly in k-space for accelerated MRI reconstruction. Designed k-space autoencoders preserving high-frequency structure in the latent domain, plus a consistency-guidance sampling method for undersampled reconstruction. Fully open-sourced for reproducible follow-on research.",
     tags: ["PyTorch", "Diffusion Models", "MRI Reconstruction", "Deep Learning", "Python"],
-    github: "https://github.com/sandrosage",
+    github: "https://github.com/sandrosage/kspace-diffusion",
     demo: "",
   },
   {
     title: "SMMetrDE – Segmentation-guided Monocular Metric Depth Estimation",
     description:
-      "Framework combining semantic segmentation with monocular depth estimation to derive object-wise metric depth. Integrated and benchmarked MonoDepth2, MiDaS, DPT, and ZoeDepth; evaluated with RMSE and AbsRel on KITTI dataset subsets.",
+      "Framework combining semantic segmentation with monocular depth estimation for object-wise metric prediction. Integrated and benchmarked MonoDepth2, MiDaS, DPT, and ZoeDepth (RMSE, AbsRel, inference time) on KITTI dataset subsets, working hands-on with transformer-based vision models (ViT, BEiT, Swin).",
     tags: ["PyTorch", "Computer Vision", "ViT", "Depth Estimation", "Python"],
-    github: "https://github.com/sandrosage",
+    github: "https://github.com/sandrosage/Monocular_Depth_Estimation",
     demo: "",
   },
   {
