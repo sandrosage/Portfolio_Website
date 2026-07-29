@@ -22,7 +22,8 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.0.0",
-    "vercel": "58.1.0",
+    "@opennextjs/cloudflare": "^1.0.0",
+    "wrangler": "^4.0.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
