@@ -30,7 +30,7 @@ builder.add_conditional_edges("plan", route_by_confidence, {
 
 The point is not the framework — it is that control flow lives in code you can read, test, and reason about, instead of being implicit in a prompt.
 
-## Observability is not optional
+## Observability is not optional here
 
 An agent that works 90% of the time and fails silently the other 10% is worse than no agent at all. The single highest-leverage investment we made was tracing every run end to end — every model call, every tool invocation, every intermediate state — with LangFuse.
 
